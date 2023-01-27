@@ -6,6 +6,7 @@ public class playerMovement : MonoBehaviour
 {
 
     public Rigidbody rb; //Component reference
+    public DataManager keepSpeed;
 
     public float forwardForce = 2000f;
     public float sidewaysForce = 500f;
@@ -21,8 +22,11 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate() //FixedUpdate() used for physics related things (Unity likes this as opposed to Update()
     {
-        //Added forwardForce 
+        //Added forwardForce
+        
         rb.AddForce(0, 0, forwardForce * Time.deltaTime);
+
+        forwardForce = DataManager.PlayerSpeed;
 
         if (Input.GetKey("d")) {
             rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
